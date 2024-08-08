@@ -5,7 +5,11 @@ import lock from '../assets/lock.png';
 
 function Home() {
   return (
-    <div className={styles.pocketnotes}>
+    <div className={styles.container}>
+     <div className={styles.sidebar}>
+     <h1 className={styles.header}>Pocket Notes</h1>
+     <button className={styles.GroupButton}>+ Create Notes group</button>
+     </div>
         <div className= {styles.right}>
             <div className={styles.innercontent}>
               <img src={notebookImage} alt="Notebook" className={styles.notebookImage} />
@@ -18,7 +22,6 @@ function Home() {
               <span>end-to-end encrypted</span>
             </div>
         </div>
-
     </div>
   )
 }
