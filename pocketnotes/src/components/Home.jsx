@@ -1,14 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
 import styles from '../components/Home.module.css';
 import notebookImage from '../assets/Home.png';
 import lock from '../assets/lock.png';
+import CreateGroupForm from './CreateGroupForm';
 
 function Home() {
+  const [isFormVisible, setIsFormVisible] = useState(false);
+
+  const handleOpenForm = () => {
+    setIsFormVisible(true);
+  };
+
+  const handleCloseForm = () => {
+    setIsFormVisible(false);
+  };
   return (
     <div className={styles.container}>
      <div className={styles.sidebar}>
      <h1 className={styles.header}>Pocket Notes</h1>
-     <button className={styles.GroupButton}>+ Create Notes group</button>
+     <button className={styles.GroupButton} onClick={handleOpenForm}>+ Create Notes group</button>
      </div>
         <div className= {styles.right}>
             <div className={styles.innercontent}>
@@ -22,6 +32,7 @@ function Home() {
               <span>end-to-end encrypted</span>
             </div>
         </div>
+        {isFormVisible && <CreateGroupForm onClose={handleCloseForm} />}
     </div>
   )
 }
