@@ -14,8 +14,11 @@
   background: white;
   padding: 20px;
   /* border-radius: 8px; */
+  text-align: left;
+  border-radius: 10px;
   width: 700px;
   text-align: center;
+  max-width: 90%;
 }
 .title {
   text-align: left;
@@ -23,11 +26,16 @@
   font-weight: 500;
   margin-bottom: 20px;
 }
+.formGroup {
+  margin-bottom: 20px;
+}
 .label {
   color: #000000;
   font-size: 27px;
   font-weight: 500;
   margin-right: 30px;
+  display: inline-block;
+  min-width: 150px;
 }
 .input {
   border: 2px solid #cccccc;
@@ -37,18 +45,28 @@
   font-weight: 400;
   width: 400px;
   padding: 15px;
+  margin-bottom: 20px;
 }
 .colorButtons {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 30px;
+  width: 380px;
   margin-bottom: 15px;
+  display: inline-flex;
+  vertical-align: middle;
 }
+.selectcolor:hover,
 .selectcolor {
-  background-color: color;
-  border-radius: "50%";
-  width: "40px";
-  height: "40px";
   border: none;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.selectcolor:hover,
+.selected {
+  border-color: #000000;
 }
 .createButton {
   background-color: #000000;
@@ -59,63 +77,123 @@
   cursor: pointer;
   font-size: 20px;
   font-weight: 400;
-  margin-left: 450px;
+  margin-left: auto;
   width: 150px;
+  display: block;
+  margin-top: 20px;
 }
 @media (max-width: 768px) {
+  .formGroup {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 0px;
+  }
+
+  .innercontainer {
+    padding: 20px;
+    width: 100%;
+    max-width: 90%;
+    box-sizing: border-box;
+  }
+
   .label {
-    margin-right: 5px;
+    font-size: 22px;
+    margin-bottom: 0;
+    min-width: 150px;
+    flex-shrink: 0;
   }
 
   .input {
-    padding: 8px;
+    padding: 10px;
+    flex: 1;
+    width: calc(100% - 180px);
+  }
+
+  .colorButtons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin-top: 10px;
+    padding: 0;
+    gap: 15px;
   }
 
   .selectcolor {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid transparent;
+    cursor: pointer;
   }
 
   .createButton {
-    padding: 8px 16px;
-    width: 120px;
+    padding: 10px 20px;
+    width: auto;
+    margin-top: 40px;
+    margin-left: auto;
+    display: block;
+    font-size: 18px;
   }
 }
 
 @media (max-width: 480px) {
+  .formGroup {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
   .innercontainer {
     padding: 15px;
-    width: 100%;
+    width: 93%;
     max-width: none;
   }
 
   .label {
-    display: block;
-    margin-bottom: 5px;
+    font-size: 18px;
+    margin-bottom: 0;
+    min-width: 120px;
+    flex-shrink: 0;
+    margin-left: 15px;
   }
 
   .input {
-    padding: 6px;
-    width: calc(100% - 20px);
+    padding: 8px;
+    flex: 1;
+    width: calc(100% - 165px);
+    overflow: hidden;
+    font-size: 12px;
   }
 
   .colorButtons {
-    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     overflow-x: auto;
-    padding: 0 10px;
+    display: flex;
+    margin-top: 15px;
+    margin-right: -17px;
+    padding: 0;
+    gap: 0px;
+    width: 180px;
   }
 
   .selectcolor {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+    border-radius: 50%;
   }
 
   .createButton {
     padding: 8px 16px;
-    width: auto;
-    margin-top: 15px;
+    width: 280px;
+    margin-top: 40px;
     margin-left: auto;
     display: block;
-    align-self: flex-end;
   }
 }

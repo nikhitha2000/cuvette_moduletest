@@ -22,16 +22,22 @@ function CreateGroupForm({ onClose }) {
         <input type="text" className={styles.input} value={groupName} onChange={(e) => setGroupName(e.target.value)} placeholder="Enter your group name..." />
       </div>
       <div className={styles.formGroup}>
-        <label className={styles.label}>Choose color</label>
+        <label className={styles.label}>Choose colour</label>
         <div className={styles.colorButtons}>
             {colors.map((color, index) => (
-              <button className ={styles.selectcolor}key={index} onClick={() => setSelectedColor(color)}/>
+              <button
+              key={index}
+              className={`${styles.selectcolor} ${selectedColor === color ? styles.selected : ""}`}
+              style={{ backgroundColor: color }}
+              onClick={() => setSelectedColor(color)}
+            />
             ))}
+        </div>
         </div>
         <button className={styles.createButton} onClick={handleSubmit}>Create</button>
         </div>
         </div>
-    </div>
+    
   );
 }
 
