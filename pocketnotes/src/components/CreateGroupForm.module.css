@@ -64,9 +64,13 @@
   height: 40px;
   cursor: pointer;
 }
-.selectcolor:hover,
+.selectcolor:hover {
+  border-color: #999999;
+}
+
 .selected {
-  border-color: #000000;
+  border-color: #000000 !important; 
+  transform: scale(1.1);
 }
 .createButton {
   background-color: #000000;
