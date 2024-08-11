@@ -1,0 +1,77 @@
+.messageContainer {
+    width: 74vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header {
+    height: 13vh;
+    width: 73vw;
+    background-color: #e8e8e8;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 3vh;
+    border: 2px solid red;
+    overflow: hidden;
+  }
+  .groupIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 25px;
+  }
+  .groupName{
+    margin-left: 20px;
+  }
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 20px;
+    padding-right: 10px;
+  }
+  .message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  .timestamp {
+    font-size: 12px;
+    color: #353535;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .inputcontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    width: 75vw;
+    background-color: #e8e8e8;
+    position: fixed;
+    bottom: 0;
+  }
+  .inputcontainer textarea{
+    border: none;
+  outline: none;
+  border-radius: 1vh;
+  font-size: large;
+  padding: 1vh;
+  height: 25vh;
+  width: 72vw;
+  }
+  .inputcontainer img{
+    position: absolute;
+  bottom: 4vh;
+  right: 6vh;
+  width: 20px;
+  height: 20px;
+  }
