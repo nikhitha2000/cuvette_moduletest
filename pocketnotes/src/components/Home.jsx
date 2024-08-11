@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import styles from '../components/Home.module.css';
 import notebookImage from '../assets/Home.png';
 import lock from '../assets/lock.png';
@@ -6,7 +6,11 @@ import CreateGroupForm from './CreateGroupForm';
 
 function Home() {
   const [isFormVisible, setIsFormVisible] = useState(false);
-
+  const [groups, setGroups] = useState([]); 
+  useEffect(() => {
+    const storedGroups = JSON.parse(localStorage.getItem('groups')) || [];
+    setGroups(storedGroups);
+  }, []);
   const handleOpenForm = () => {
     setIsFormVisible(true);
   };
@@ -14,11 +18,50 @@ function Home() {
   const handleCloseForm = () => {
     setIsFormVisible(false);
   };
+  const handleGroupCreate = (group) => {
+    const newGroups = [...groups, group];
+    setGroups(newGroups);
+    localStorage.setItem('groups', JSON.stringify(newGroups));
+};
+// Function to generate initials based on group name
+const getInitials = (name) => {
+  // Trim and split the name into words
+  const words = name.trim().split(/\s+/);
+
+  // If there's only one word, return the first two letters
+  if (words.length === 1) {
+    return words[0].slice(0, 2).toUpperCase();
+  }
+
+  // If there are multiple words, return the first letter of the first two words
+  const firstInitial = words[0][0].toUpperCase();
+  const secondInitial = words[1][0].toUpperCase();
+
+  return firstInitial + secondInitial;
+
+};
+
   return (
     <div className={styles.container}>
      <div className={styles.sidebar}>
      <h1 className={styles.header}>Pocket Notes</h1>
      <button className={styles.GroupButton} onClick={handleOpenForm}>+ Create Notes group</button>
+     <div className={styles.groupList}>
+                    {groups.map((group, index) => (
+                        <div key={index} className={styles.groupItem}>
+                            <div
+                                className={styles.groupIcon}
+                                style={{ backgroundColor: group.color }}
+                            >
+                                {getInitials(group.name)}
+                               
+
+                            </div>
+                            <span className={styles.groupName}>{group.name}</span>
+                            
+                        </div>
+                    ))}
+                </div>
      </div>
         <div className= {styles.right}>
             <div className={styles.innercontent}>
@@ -32,7 +75,7 @@ function Home() {
               <span>end-to-end encrypted</span>
             </div>
         </div>
-        {isFormVisible && <CreateGroupForm onClose={handleCloseForm} />}
+        {isFormVisible && <CreateGroupForm onClose={handleCloseForm} onGroupCreate={handleGroupCreate} />}
     </div>
   )
 }

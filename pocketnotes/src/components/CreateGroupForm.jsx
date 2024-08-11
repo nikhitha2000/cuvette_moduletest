@@ -3,13 +3,13 @@ import styles from "./CreateGroupForm.module.css";
 
 const colors = ["#B38BFA","#FF79F2","#43E6FC","#F19576","#0047FF","#6691FF"];
 
-function CreateGroupForm({ onClose }) {
+function CreateGroupForm({ onClose, onGroupCreate }) {
     const [selectedColor, setSelectedColor] = useState('');
     const [groupName, setGroupName] = useState('');
 
   const handleSubmit = () => {
     if (selectedColor && groupName) {
-      console.log(`Group created: ${groupName}, Color: ${selectedColor}`);
+      onGroupCreate({ name: groupName, color: selectedColor });
       onClose();
     }
   };
