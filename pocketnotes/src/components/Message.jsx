@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../components/Message.module.css";
 import send from "../assets/send.png";
-
+import { getInitials } from "../utils/getInitials";
 function Messages({ group }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -12,57 +12,59 @@ function Messages({ group }) {
   }, [group]);
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && newMessage.trim()) {
       e.preventDefault();
-     handleSendMessage();
+      handleSendMessage();
     }
   };
+
   const handleSendMessage = () => {
     if (newMessage.trim()) {
-        const timestamp = new Date();
-        const formattedTime = timestamp.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        });
-        const formattedDate = timestamp.toLocaleDateString("en-GB", {
-          day: "numeric",
-          month: "long",
-          year: "numeric",
+      const timestamp = new Date();
+      const formattedDate = timestamp.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+      const formattedTime = timestamp.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
   
-        });
-        const message = {
-            text:newMessage,
-            timestamp: `${formattedTime} ${formattedDate}`,
-        };
+      const message = {
+        text: newMessage,
+        timestamp: `${formattedDate}  ${formattedTime}`,
+      };
+      
       const updatedMessages = [...messages, message];
       setMessages(updatedMessages);
       localStorage.setItem(group.name, JSON.stringify(updatedMessages));
       setNewMessage("");
     }
   };
+  
+
+  const handleImageClick = () => {
+    if (newMessage.trim()) {
+      handleSendMessage();
+    }
+  };
 
   return (
     <div className={styles.messageContainer}>
       <div className={styles.header}>
-        <div
-          className={styles.groupIcon}
-          style={{ backgroundColor: group.color }}
-        >
-          {group.name.slice(0, 2).toUpperCase()}
+        <div className={styles.groupIcon} style={{ backgroundColor: group.color }}>
+        {getInitials(group.name)}
         </div>
         <h2 className={styles.groupName}>{group.name}</h2>
+        {console.log("Rendering group icon for:", group.name, "with color:", group.color)}
       </div>
       <div className={styles.messages}>
         {messages.map((message, index) => (
           <div key={index} className={styles.message}>
-            <div className={styles.messageContent}>
-            <div className={styles.timestamp}>
-                <div className={styles.time}>{message.time}</div>
-                <div className={styles.date}>{message.date}</div>
-          </div>
-          <div className={styles.text}>{message.text}</div>
-          </div>
+            <p className={styles.text}>{message.text}</p>
+            <div className={styles.timestamp}>{message.timestamp}</div>
           </div>
         ))}
       </div>
@@ -73,7 +75,7 @@ function Messages({ group }) {
           placeholder="Enter your text here..."
           onKeyDown={handleKeyDown}
         ></textarea>
-        <img src = {send} alt="send" onClick={handleSendMessage} />
+        <img src={send} alt="send" onClick={handleImageClick} />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import lock from "../assets/lock.png";
 import CreateGroupForm from "./CreateGroupForm";
 import Message from "../components/Message";
 import add from "../assets/add.png";
+import { getInitials } from "../utils/getInitials";
 
 function Home() {
   const [isFormVisible, setIsFormVisible] = useState(false);
@@ -13,6 +14,7 @@ function Home() {
 
   useEffect(() => {
     const storedGroups = JSON.parse(localStorage.getItem("groups")) || [];
+    console.log("Loaded groups:", storedGroups);
     setGroups(storedGroups);
   }, []);
 
@@ -25,28 +27,17 @@ function Home() {
   };
 
   const handleGroupCreate = (group) => {
+    console.log("Creating group:", group);
     const newGroups = [...groups, group];
     setGroups(newGroups);
     localStorage.setItem("groups", JSON.stringify(newGroups));
   };
 
   const handleGroupSelect = (group) => {
+    console.log("Selected group:", group);
+    console.log("Initials for the group:", getInitials(group.name));
     setSelectedGroup(group);
   };
-
-  const getInitials = (name) => {
-    const words = name.trim().split(/\s+/);
-
-    if (words.length === 1) {
-      return words[0].slice(0, 2).toUpperCase();
-    }
-
-    const firstInitial = words[0][0].toUpperCase();
-    const secondInitial = words[1][0].toUpperCase();
-
-    return firstInitial + secondInitial;
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>

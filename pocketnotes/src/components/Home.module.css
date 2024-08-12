@@ -58,6 +58,11 @@
   margin-bottom: 20px;
 }
 
+.selectedGroup {
+  background-color: #2F2F2F2B;
+  border-radius: 16px;
+  padding: 10px;
+}
 .right {
   width: 75%;
   height: 100vh;
