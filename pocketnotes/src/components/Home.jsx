@@ -4,15 +4,18 @@ import notebookImage from "../assets/Home.png";
 import lock from "../assets/lock.png";
 import CreateGroupForm from "./CreateGroupForm";
 import Message from "../components/Message";
+import add from "../assets/add.png";
 
 function Home() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState(null);
+
   useEffect(() => {
     const storedGroups = JSON.parse(localStorage.getItem("groups")) || [];
     setGroups(storedGroups);
   }, []);
+
   const handleOpenForm = () => {
     setIsFormVisible(true);
   };
@@ -20,17 +23,16 @@ function Home() {
   const handleCloseForm = () => {
     setIsFormVisible(false);
   };
+
   const handleGroupCreate = (group) => {
     const newGroups = [...groups, group];
     setGroups(newGroups);
     localStorage.setItem("groups", JSON.stringify(newGroups));
   };
+
   const handleGroupSelect = (group) => {
-
     setSelectedGroup(group);
-
   };
-
 
   const getInitials = (name) => {
     const words = name.trim().split(/\s+/);
@@ -49,15 +51,15 @@ function Home() {
     <div className={styles.container}>
       <div className={styles.sidebar}>
         <h1 className={styles.header}>Pocket Notes</h1>
-        <button className={styles.GroupButton} onClick={handleOpenForm}>
-          + Create Notes group
-        </button>
         <div className={styles.groupList}>
           {groups.map((group, index) => (
-             <div key={index} className={`${styles.groupItem} ${ 
-            selectedGroup === group ? styles.selectedGroup : ""
-          }`}
-onClick={() => handleGroupSelect(group)}>
+            <div
+              key={index}
+              className={`${styles.groupItem} ${
+                selectedGroup === group ? styles.selectedGroup : ""
+              }`}
+              onClick={() => handleGroupSelect(group)}
+            >
               <div
                 className={styles.groupIcon}
                 style={{ backgroundColor: group.color }}
@@ -70,25 +72,24 @@ onClick={() => handleGroupSelect(group)}>
         </div>
       </div>
       <div className={styles.right}>
-      {selectedGroup ? (
-<Message group={selectedGroup} />
-
-) : (
-        <div className={styles.innercontent}>
-          <img
-            src={notebookImage}
-            alt="Notebook"
-            className={styles.notebookImage}
-          />
-          <h1 className={styles.heading}>Pocket Notes</h1>
-          <p className={styles.info}>
-            Send and receive messages without keeping your phone online.
-          </p>
-          <p className={styles.info}>
-            Use Pocket Notes on up to 4 linked devices and 1 mobile phone
-          </p>
-        </div>
-)}
+        {selectedGroup ? (
+          <Message group={selectedGroup} />
+        ) : (
+          <div className={styles.innercontent}>
+            <img
+              src={notebookImage}
+              alt="Notebook"
+              className={styles.notebookImage}
+            />
+            <h1 className={styles.heading}>Pocket Notes</h1>
+            <p className={styles.info}>
+              Send and receive messages without keeping your phone online.
+            </p>
+            <p className={styles.info}>
+              Use Pocket Notes on up to 4 linked devices and 1 mobile phone
+            </p>
+          </div>
+        )}
         <div className={styles.footer}>
           <img src={lock} alt="lock" className={styles.encryption} />
           <span>end-to-end encrypted</span>
@@ -100,6 +101,7 @@ onClick={() => handleGroupSelect(group)}>
           onGroupCreate={handleGroupCreate}
         />
       )}
+     <img src={add}  alt="Create Notes Group"className={styles.floatingButton} onClick={handleOpenForm}/>
     </div>
   );
 }

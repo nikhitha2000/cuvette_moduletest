@@ -1,52 +1,53 @@
 .container {
   display: flex;
   height: 100vh;
-  width:100%;
+  width: 100%;
+  position: relative;
 }
+
 .sidebar {
   width: 25%;
   background-color: #ffffff;
   padding: 20px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
+
 .header {
   font-size: 31px;
   font-weight: 500;
-  margin-bottom: 50px;
-  text-align: left;
+  margin-bottom: 30px;
+  text-align: center;
   color: #000000;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  padding: 10px 0;
 }
-.GroupButton {
-  padding: 8px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
-  border-radius: 25px;
-  font-weight: 500;
-  font-size: 20px;
-}
+
 .groupList {
   margin-top: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .groupItem {
   display: flex;
   align-items: center;
   margin-bottom: 25px;
+  cursor: pointer;
 }
 
 .groupIcon {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 500;
   margin-right: 25px;
 }
@@ -54,25 +55,28 @@
 .groupName {
   font-size: 20px;
   font-weight: 500;
-  margin-bottom: 10px;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
+
 .right {
-    width: 75%;
-    height: 100vh;
-    background-color: #F7ECDC;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
+  width: 75%;
+  height: 100vh;
+  background-color:#DAE5F5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
 }
+
 .innercontent {
   text-align: center;
   max-width: 770px;
   width: 100%;
 }
+
 .notebookImage {
   max-width: 100%;
   height: auto;
@@ -84,12 +88,17 @@
   margin-bottom: 10px;
   color: #000000;
   font-weight: 400;
+  position: sticky;
+  top: 0;
+  padding: 20px 0;
 }
+
 .info {
   font-size: 22px;
   margin-bottom: 10px;
   font-weight: 400;
 }
+
 .footer {
   display: flex;
   align-items: center;
@@ -98,72 +107,135 @@
   margin-top: auto;
   font-size: 1rem;
   font-weight: 400;
+  bottom: 0;
+  padding: 10px 0;
+  width: 100%;
 }
-.span {
-  background: #292929;
+
+.encryption {
+  width: 20px;
+  height: 20px;
 }
-@media (max-width: 770px) {
+
+.floatingButton {
+  position: absolute;
+  bottom: 20px;
+  right: calc(75% - -20px); 
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+}
+
+
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 30%; /* Sidebar takes less space on tablets */
+  }
+
+  .right {
+    width: 70%; /* Larger content area on tablets */
+  }
+
+  .floatingButton {
+    bottom: 15px;
+    width: 55px;
+    height: 55px;
+    right: calc(50% - -420px / 2); /* Position button at the edge of the sidebar */
+  }
+}
+
+/* Adjustments specific to medium-sized devices like tablets */
+@media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
-  .sidebar {
-    width: 100%;
-    padding: 30px;
-  }
-  .right{
-    width: 100%;
+
+  .groupList {
     height: 100vh;
-    padding: 10px;
   }
-  .header{
-    font-size: 24px;
+
+  .sidebar {
+    width: 100%; /* Full width on smaller tablets */
+    padding: 15px;
+    height: 100vh; /* Full height for easier navigation */
   }
-  .GroupButton {
-    padding: 8px;
-    margin-bottom: 10px;
-    font-size: 30px;
+
+  .right {
+    width: 100%; /* Full width allows for better layout on devices */
+    height: auto;
+    padding: 20px;
   }
-  .groupItem {
-    margin-bottom: 6px;
+
+  .header {
+    font-size: 24px; /* Scaled up for tablet readability */
+    margin-bottom: 30px;
   }
 
   .groupIcon {
-    width: 70px;
-    height: 70px;
-    font-size:30px;
-    margin-right: 6px;
-    margin-bottom: 15px;
+    width: 60px; /* Consistent size for clear interface */
+    height: 60px;
+    font-size: 25px;
+    margin-right: 15px;
   }
 
   .groupName {
-    font-size: 35px;
-    margin-bottom: 40px;
-    margin-left: 30px;
+    font-size: 30px; /* Clear and legible on tablets */
+    margin-bottom: 20px;
   }
-  .footer{
-    margin-top: 20px;
+
+  .heading {
+    font-size: 40px; /* Prominent heading for clarity */
   }
-  .notebookImage {
-    max-width: auto;
+
+  .info {
+    font-size: 18px; /* Detailed info text size increased */
+  }
+
+  .floatingButton {
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    left: calc(50% - -280px); /* Center the button horizontally */
+    position: sticky;
   }
 }
+
 @media (max-width: 480px) {
   .header {
-    font-size: 30px;
+    font-size: 20px;
   }
-  .groupItem {
-    margin-bottom: 6px;
+  .groupList{
+    height: 100vh;
   }
-
   .groupIcon {
-    width: 80px;
-    height: 80px;
-    font-size: 30px;
-    margin-right: 6px;
-    margin-bottom: 13px;
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    margin-right: 10px;
   }
 
   .groupName {
-    font-size: 27px;
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .heading {
+    font-size: 35px;
+  }
+
+  .info {
+    font-size: 16px;
+  }
+
+  .floatingButton {
+    right: 10px;  /* Consistent with other mobile settings */
+    bottom: 10px;  /* Consistent with other mobile settings */
+    width: 45px;  /* Appropriate size for very small screens */
+    height: 45px;
+    position: sticky;
+    left: 330px;
   }
 }
+
