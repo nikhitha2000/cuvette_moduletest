@@ -5,16 +5,16 @@ import lock from "../assets/lock.png";
 import CreateGroupForm from "./CreateGroupForm";
 import Message from "../components/Message";
 import add from "../assets/add.png";
-import { getInitials } from "../utils/getInitials";
+import { getInitials, isMobileDevice } from "../utils/getInitials";
 
 function Home() {
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   useEffect(() => {
     const storedGroups = JSON.parse(localStorage.getItem("groups")) || [];
-    console.log("Loaded groups:", storedGroups);
     setGroups(storedGroups);
   }, []);
 
@@ -27,44 +27,52 @@ function Home() {
   };
 
   const handleGroupCreate = (group) => {
-    console.log("Creating group:", group);
     const newGroups = [...groups, group];
     setGroups(newGroups);
     localStorage.setItem("groups", JSON.stringify(newGroups));
   };
 
   const handleGroupSelect = (group) => {
-    console.log("Selected group:", group);
-    console.log("Initials for the group:", getInitials(group.name));
     setSelectedGroup(group);
+    if (isMobileDevice()) {
+      setShowSidebar(false);
+    }
   };
+
+  const handleBackClick = () => {
+    setShowSidebar(true);
+    setSelectedGroup(null);
+  };
+
   return (
     <div className={styles.container}>
-      <div className={styles.sidebar}>
-        <h1 className={styles.header}>Pocket Notes</h1>
-        <div className={styles.groupList}>
-          {groups.map((group, index) => (
-            <div
-              key={index}
-              className={`${styles.groupItem} ${
-                selectedGroup === group ? styles.selectedGroup : ""
-              }`}
-              onClick={() => handleGroupSelect(group)}
-            >
+      {showSidebar && (
+        <div className={styles.sidebar}>
+          <h1 className={styles.header}>Pocket Notes</h1>
+          <div className={styles.groupList}>
+            {groups.map((group, index) => (
               <div
-                className={styles.groupIcon}
-                style={{ backgroundColor: group.color }}
+                key={index}
+                className={`${styles.groupItem} ${
+                  selectedGroup === group ? styles.selectedGroup : ""
+                }`}
+                onClick={() => handleGroupSelect(group)}
               >
-                {getInitials(group.name)}
+                <div
+                  className={styles.groupIcon}
+                  style={{ backgroundColor: group.color }}
+                >
+                  {getInitials(group.name)}
+                </div>
+                <span className={styles.groupName}>{group.name}</span>
               </div>
-              <span className={styles.groupName}>{group.name}</span>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className={styles.right}>
         {selectedGroup ? (
-          <Message group={selectedGroup} />
+          <Message group={selectedGroup} onBack={handleBackClick} />
         ) : (
           <div className={styles.innercontent}>
             <img
@@ -92,7 +100,14 @@ function Home() {
           onGroupCreate={handleGroupCreate}
         />
       )}
-     <img src={add}  alt="Create Notes Group"className={styles.floatingButton} onClick={handleOpenForm}/>
+      {showSidebar && (
+        <img
+          src={add}
+          alt="Create Notes Group"
+          className={styles.floatingButton}
+          onClick={handleOpenForm}
+        />
+      )}
     </div>
   );
 }

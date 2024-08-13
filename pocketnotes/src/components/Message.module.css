@@ -1,15 +1,15 @@
 .messageContainer {
     width: 65vw;
-    height: 65vh;  /* Full height of the viewport */
+    height: 65vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
   .header {
-    position: fixed;  /* Fixes the header at the top */
-    top: 0;           /* Aligns the header to the top of the viewport */
-    left: 25%;          /* Aligns the header to the left side */
-    width: 75%;      /* Ensures the header stretches across the full width */
+    position: fixed;  
+    top: 0;          
+    left: 25%;
+    width: 75%;
     height: 13vh;
     background-color: #001F8B;
     display: flex;
@@ -23,7 +23,7 @@
     flex: 1;
     overflow-y: auto;
     padding-right: 10px;
-    margin-top: 13vh;  /* Adds top margin to push messages below the fixed header */
+    margin-top: 13vh;
 }
 
 
@@ -44,19 +44,14 @@
     color: #ffffff;
     font-weight: 500;
   }
-  /* .messages {
-    flex: 1;
-    overflow-y: auto;
-    margin-top: 20px;
-    padding-right: 10px;
-  } */
   .message {
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #ffffff;
     padding: 20px;
     width: 65vw;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
   .text{
     font-weight: 400;
@@ -90,7 +85,7 @@
   font-size: large;
   padding: 1vh;
   height: 25vh;
-  width: 72vw;
+  width: 70vw;
   }
   .inputcontainer img{
     position: absolute;
@@ -98,4 +93,43 @@
   right: 6vh;
   width: 20px;
   height: 20px;
+  }
+  .backButtonImage {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 580px){
+    .header{
+      width: 100%;
+      left: 1%;
+    }
+    .inputcontainer{
+      width: 100vw;
+      height: 30vh;
+    }
+    .inputcontainer textarea{
+      width: 90vw;
+    }
+  }
+
+
+  @media (max-width: 780px) {
+    .header{
+      left: 0%;
+      width: 100%;
+    }
+    .inputcontainer{
+      width: 100vw;
+      height: 33vh;
+    }
+    .inputcontainer textarea{
+      width: 90vw;
+      height:25vh;
+    }
+    .inputcontainer img{
+      top:70%;
+    }
   }

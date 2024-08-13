@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "../components/Message.module.css";
 import send from "../assets/send.png";
-import { getInitials } from "../utils/getInitials";
-function Messages({ group }) {
+import { getInitials , isMobileDevice } from "../utils/getInitials";
+import back from "../assets/back.png";
+function Messages({ group ,onBack }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -54,11 +55,18 @@ function Messages({ group }) {
   return (
     <div className={styles.messageContainer}>
       <div className={styles.header}>
+      {isMobileDevice() && (
+          <img
+            src={back}
+            alt="Back"
+            className={styles.backButtonImage}
+            onClick={onBack}
+          />
+        )}
         <div className={styles.groupIcon} style={{ backgroundColor: group.color }}>
         {getInitials(group.name)}
         </div>
         <h2 className={styles.groupName}>{group.name}</h2>
-        {console.log("Rendering group icon for:", group.name, "with color:", group.color)}
       </div>
       <div className={styles.messages}>
         {messages.map((message, index) => (
