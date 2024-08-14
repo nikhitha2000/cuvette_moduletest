@@ -8,6 +8,8 @@ export const getInitials = (name) => {
   };
 
   export const isMobileDevice = () => {
-    return window.innerWidth <= 768; 
-  };
+    const width = window.innerWidth / window.devicePixelRatio;
+    return width <= 780; 
+};
+
   

@@ -136,22 +136,22 @@
 
 @media (max-width: 1024px) {
   .sidebar {
-    width: 30%; /* Sidebar takes less space on tablets */
+    width: 30%; 
   }
 
   .right {
-    width: 70%; /* Larger content area on tablets */
+    width: 70%; 
   }
 
   .floatingButton {
     bottom: 15px;
     width: 55px;
     height: 55px;
-    right: calc(50% - -420px / 2); /* Position button at the edge of the sidebar */
+    right: calc(50% - -420px / 2); 
   }
 }
 
-/* Adjustments specific to medium-sized devices like tablets */
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -162,47 +162,47 @@
   }
 
   .sidebar {
-    width: 100%; /* Full width on smaller tablets */
+    width: 100%;
     padding: 15px;
-    height: 100vh; /* Full height for easier navigation */
+    height: 100vh; 
   }
 
   .right {
-    width: 100%; /* Full width allows for better layout on devices */
+    width: 100%;
     height: auto;
     padding: 20px;
   }
 
   .header {
-    font-size: 24px; /* Scaled up for tablet readability */
+    font-size: 24px; 
     margin-bottom: 30px;
   }
 
   .groupIcon {
-    width: 60px; /* Consistent size for clear interface */
+    width: 60px;
     height: 60px;
     font-size: 25px;
     margin-right: 15px;
   }
 
   .groupName {
-    font-size: 30px; /* Clear and legible on tablets */
+    font-size: 30px; 
     margin-bottom: 20px;
   }
 
   .heading {
-    font-size: 40px; /* Prominent heading for clarity */
+    font-size: 40px;
   }
 
   .info {
-    font-size: 18px; /* Detailed info text size increased */
+    font-size: 18px; 
   }
 
   .floatingButton {
     width: 50px;
     height: 50px;
     bottom: 10px;
-    left: calc(50% - -280px); /* Center the button horizontally */
+    left: calc(50% - -280px); 
     position: sticky;
   }
 }
@@ -235,9 +235,9 @@
   }
 
   .floatingButton {
-    right: 10px;  /* Consistent with other mobile settings */
-    bottom: 10px;  /* Consistent with other mobile settings */
-    width: 45px;  /* Appropriate size for very small screens */
+    right: 10px;  
+    bottom: 10px;  
+    width: 45px;  
     height: 45px;
     position: sticky;
     left: 330px;
